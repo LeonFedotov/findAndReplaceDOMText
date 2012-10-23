@@ -35,7 +35,7 @@ window.findAndReplaceDOMText = (function() {
     var m, index, matches = [], text = _getText(node);
     var replaceFn = _genReplacer(replacementNode);
 
-    if (!text) { return; }
+    if (!text) { return false; }
 
     if (regex.global) {
       while (m = regex.exec(text)) {
@@ -51,8 +51,9 @@ window.findAndReplaceDOMText = (function() {
 
     if (matches.length) {
       _stepThroughMatches(node, matches, replaceFn);
+      return true;
     }
-
+    return false;
   }
 
   /**
